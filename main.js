@@ -3,6 +3,14 @@ const qrcode = require("qrcode-terminal");
 const sqlite3 = require("sqlite3").verbose();
 const moment = require("moment"); // We'll use moment.js for date handling
 
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
 // Update the database schema to add the 'detail' column if it doesn't exist
 const db = new sqlite3.Database("./assignments.db", (err) => {
   if (err) {
