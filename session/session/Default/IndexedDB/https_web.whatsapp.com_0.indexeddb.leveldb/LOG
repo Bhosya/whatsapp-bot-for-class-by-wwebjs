@@ -1,21 +1,19 @@
-2024/10/16-23:34:12.316 3760 Reusing MANIFEST D:\wwebjs-bot\session\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/10/16-23:34:12.317 3760 Recovering log #335
-2024/10/16-23:34:12.383 3760 Reusing old log D:\wwebjs-bot\session\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000335.log 
-2024/10/16-23:34:15.387 37c4 Level-0 table #344: started
-2024/10/16-23:34:15.405 37c4 Level-0 table #344: 215010 bytes OK
-2024/10/16-23:34:15.408 37c4 Delete type=0 #335
-2024/10/16-23:34:15.410 37c4 Manual compaction at level-0 from '\x00:\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00;\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/10/16-23:34:19.564 37c4 Compacting 1@1 + 5@2 files
-2024/10/16-23:34:19.837 37c4 Generated table #345@1: 86825 keys, 2235516 bytes
-2024/10/16-23:34:19.983 37c4 Generated table #346@1: 16884 keys, 2180604 bytes
-2024/10/16-23:34:20.178 37c4 Generated table #347@1: 21010 keys, 2211277 bytes
-2024/10/16-23:34:20.289 37c4 Generated table #348@1: 24023 keys, 2151577 bytes
-2024/10/16-23:34:20.552 37c4 Generated table #349@1: 76384 keys, 1524597 bytes
-2024/10/16-23:34:20.552 37c4 Compacted 1@1 + 5@2 files => 10303571 bytes
-2024/10/16-23:34:20.554 37c4 compacted to: files[ 0 0 5 0 0 0 0 ]
-2024/10/16-23:34:20.555 37c4 Delete type=2 #337
-2024/10/16-23:34:20.555 37c4 Delete type=2 #338
-2024/10/16-23:34:20.555 37c4 Delete type=2 #339
-2024/10/16-23:34:20.555 37c4 Delete type=2 #340
-2024/10/16-23:34:20.555 37c4 Delete type=2 #341
-2024/10/16-23:34:20.555 37c4 Delete type=2 #344
+2024/10/17-07:59:19.806 135c Reusing MANIFEST D:\wwebjs-bot\session\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/17-07:59:19.807 135c Recovering log #91
+2024/10/17-07:59:19.871 135c Reusing old log D:\wwebjs-bot\session\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000091.log 
+2024/10/17-07:59:22.013 55c Level-0 table #99: started
+2024/10/17-07:59:22.022 55c Level-0 table #99: 184324 bytes OK
+2024/10/17-07:59:22.024 55c Delete type=0 #91
+2024/10/17-07:59:22.025 55c Manual compaction at level-0 from '\x00\x1a\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1b\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/17-07:59:25.157 55c Compacting 1@1 + 4@2 files
+2024/10/17-07:59:25.241 55c Generated table #100@1: 25559 keys, 2189679 bytes
+2024/10/17-07:59:25.331 55c Generated table #101@1: 18369 keys, 2196372 bytes
+2024/10/17-07:59:25.519 55c Generated table #102@1: 99882 keys, 2252273 bytes
+2024/10/17-07:59:25.534 55c Generated table #103@1: 9181 keys, 182966 bytes
+2024/10/17-07:59:25.534 55c Compacted 1@1 + 4@2 files => 6821290 bytes
+2024/10/17-07:59:25.535 55c compacted to: files[ 0 0 4 0 0 0 0 ]
+2024/10/17-07:59:25.536 55c Delete type=2 #93
+2024/10/17-07:59:25.536 55c Delete type=2 #94
+2024/10/17-07:59:25.536 55c Delete type=2 #95
+2024/10/17-07:59:25.536 55c Delete type=2 #96
+2024/10/17-07:59:25.536 55c Delete type=2 #99

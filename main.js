@@ -53,6 +53,18 @@ client.on("qr", (qr) => {
 client.initialize();
 
 client.on("message", async (msg) => {
+  // Only log commands that start with a specific symbol (e.g., '.' or '!')
+  if (msg.body.startsWith(".")) {
+    const sender = msg.author || msg.from; // Get sender's number
+    const contact = await msg.getContact(); // Get contact info (name, etc.)
+
+    // Retrieve username (or fallback to number if no name is set)
+    const username = contact.pushname || contact.number || sender;
+
+    // Log the command and the user who sent it
+    console.log(`@${username} used: ${msg.body}`);
+  }
+
   // Auto-delete expired assignments before processing any commands
   deleteExpiredAssignments();
 
