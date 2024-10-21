@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wppconnect-team/wppconnect": "^1.34.2",
     "express": "^4.21.1",
     "moment": "^2.30.1",
     "qrcode-terminal": "^0.12.0",

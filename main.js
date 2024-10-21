@@ -1,7 +1,7 @@
 const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const sqlite3 = require("sqlite3").verbose();
-const moment = require("moment"); // We'll use moment.js for date handling
+const moment = require("moment");
 
 const express = require("express");
 const app = express();
@@ -11,7 +11,6 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-// Update the database schema to add the 'detail' column if it doesn't exist
 const db = new sqlite3.Database("./assignments.db", (err) => {
   if (err) {
     console.error("Error opening database", err.message);
@@ -26,7 +25,6 @@ const db = new sqlite3.Database("./assignments.db", (err) => {
   }
 });
 
-// Function to auto-delete expired assignments
 function deleteExpiredAssignments() {
   const currentDate = moment().format("DD-MM-YYYY");
   db.run(`DELETE FROM assignments WHERE deadline < ?`, [currentDate], (err) => {
@@ -53,7 +51,6 @@ client.on("qr", (qr) => {
 client.initialize();
 
 client.on("message", async (msg) => {
-  // Only log commands that start with a specific symbol (e.g., '.' or '!')
   if (msg.body.startsWith(".")) {
     const sender = msg.author || msg.from; // Get sender's number
     const contact = await msg.getContact(); // Get contact info (name, etc.)
@@ -61,19 +58,14 @@ client.on("message", async (msg) => {
     // Retrieve username (or fallback to number if no name is set)
     const username = contact.pushname || contact.number || sender;
 
-    // Log the command and the user who sent it
     console.log(`@${username} used: ${msg.body}`);
   }
 
-  // Auto-delete expired assignments before processing any commands
   deleteExpiredAssignments();
 
   if (msg.body === ".help") {
     client.sendMessage(msg.from, "Command yang tersedia:\n\n.tugasbaru <matkul> <deadline> <detail tugas>\n.detailtugas <matkul>\n.listtugas\n.hapustugas <matkul>");
-  }
-
-  // @everyone functionality remains unchanged
-  else if (msg.body === "@everyone") {
+  } else if (msg.body === "@everyone") {
     const chat = await msg.getChat();
     let text = "";
     let mentions = [];
@@ -84,14 +76,10 @@ client.on("message", async (msg) => {
     }
 
     await chat.sendMessage(text, { mentions });
-  }
-
-  // Add a new assignment with title, deadline (dd-mm-yyyy), and detail
-  else if (msg.body.startsWith(".tugasbaru ")) {
+  } else if (msg.body.startsWith(".tugasbaru ")) {
     const [_, title, deadline, ...detailArr] = msg.body.split(" ");
     const detail = detailArr.join(" ");
 
-    // Validate the deadline format (dd-mm-yyyy)
     if (moment(deadline, "DD-MM-YYYY", true).isValid() && title && detail) {
       db.run(`INSERT INTO assignments (title, deadline, detail) VALUES (?, ?, ?)`, [title, deadline, detail], (err) => {
         if (err) {
@@ -103,10 +91,7 @@ client.on("message", async (msg) => {
     } else {
       client.sendMessage(msg.from, "Format salah. Gunakan: !tugasbaru <judul tugas> <deadline (dd-mm-yyyy)> <detail>");
     }
-  }
-
-  // Retrieve the detail of a specific assignment
-  else if (msg.body.startsWith(".detailtugas ")) {
+  } else if (msg.body.startsWith(".detailtugas ")) {
     const [_, title] = msg.body.split(" ", 2);
 
     if (title) {
@@ -120,10 +105,7 @@ client.on("message", async (msg) => {
     } else {
       client.sendMessage(msg.from, "Format salah. Gunakan: !detailtugas <judul tugas>");
     }
-  }
-
-  // Delete assignments remains unchanged
-  else if (msg.body.startsWith(".hapustugas ")) {
+  } else if (msg.body.startsWith(".hapustugas ")) {
     const [_, title] = msg.body.split(" ", 2);
 
     if (title) {
@@ -137,10 +119,7 @@ client.on("message", async (msg) => {
     } else {
       client.sendMessage(msg.from, "Format salah. Gunakan: !hapustugas <judul tugas>");
     }
-  }
-
-  // List assignments remains unchanged
-  else if (msg.body === ".listtugas") {
+  } else if (msg.body === ".listtugas") {
     db.all(`SELECT title, deadline FROM assignments`, [], (err, rows) => {
       if (err) {
         client.sendMessage(msg.from, "Gagal mengambil daftar tugas.");
